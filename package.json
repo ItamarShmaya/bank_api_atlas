@@ -1,0 +1,30 @@
+{
+  "name": "bank_api_mongoose",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000b\u0000a\u0000n\u0000k\u0000_\u0000a\u0000p\u0000i\u0000_\u0000a\u0000t\u0000l\u0000a\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/app/index.js",
+    "client": "npm start --prefix client",
+    "server": "nodemon ./server/app/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm install --prefix server && npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItamarShmaya/bank_api_atlas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ItamarShmaya/bank_api_atlas/issues"
+  },
+  "homepage": "https://github.com/ItamarShmaya/bank_api_atlas#readme",
+  "dependencies": {
+    "concurrently": "^7.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
