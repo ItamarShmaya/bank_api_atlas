@@ -5,7 +5,8 @@ import path from "path";
 import * as url from "url";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-const clientPublicDirPath = path.join(__dirname, "../../client/public");
+const clientPublicDirPath = path.join(__dirname, "../../client/build");
+
 const app = express();
 
 app.use(cors());
