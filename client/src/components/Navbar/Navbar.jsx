@@ -28,12 +28,9 @@ const Navbar = () => {
         <NavLink to="/" className="nav-item">
           Home
         </NavLink>
-        <NavLink
-          to="https://sh-bank-app.herokuapp.com/api/"
-          className="nav-item"
-        >
+        <a href="https://sh-bank-app.herokuapp.com/api" className="nav-item">
           API
-        </NavLink>
+        </a>
       </div>
       {!loggedInUser && (
         <>
