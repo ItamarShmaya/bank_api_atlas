@@ -17,7 +17,7 @@ export const createUser = async (req, res) => {
     const updatedUser = await User.findById(user._id);
     res.status(201).send({ user: updatedUser, token });
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send(e.message);
   }
 };
 
@@ -29,7 +29,7 @@ export const createAdmin = async (req, res) => {
     const token = await createdUser.generateUserAuthToken();
     res.status(201).send({ user: createdUser, token });
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send(e.message);
   }
 };
 
@@ -40,7 +40,7 @@ export const loginUser = async (req, res) => {
     const token = await user.generateUserAuthToken();
     res.send({ user, token });
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send(e.message);
   }
 };
 
@@ -72,7 +72,7 @@ export const getAllUsers = async (req, res, next) => {
     const users = await User.find();
     res.send(users);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send(e.message);
   }
 };
 
@@ -140,7 +140,7 @@ export const deleteUser = async (req, res) => {
     await user.remove();
     res.send(user);
   } catch (e) {
-    res.status(404).send(e);
+    res.status(404).send(e.message);
   }
 };
 

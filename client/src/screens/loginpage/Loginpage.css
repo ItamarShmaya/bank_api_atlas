@@ -1,0 +1,26 @@
+.formWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.formWrapper form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.formWrapper form input {
+  padding: 10px;
+  font-size: 15px;
+}
+.formWrapper form button {
+  background-color: rgb(45, 191, 244);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}

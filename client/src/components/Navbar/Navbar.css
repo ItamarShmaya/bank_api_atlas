@@ -1,0 +1,21 @@
+nav {
+  background-color: rgb(45, 191, 244);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.nav-item {
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  cursor: pointer;
+  background-color: rgb(0, 156, 247);
+}
+
+.nav-item.home {
+  margin-right: auto;
+}
