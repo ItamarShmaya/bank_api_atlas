@@ -1,0 +1,48 @@
+hr {
+  margin: 10px 0;
+}
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+pre {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.code-container {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.action form {
+  display: flex;
+  gap: 10px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu div {
+  padding: 10px;
+  cursor: pointer;
+}
