@@ -16,6 +16,6 @@ nav {
   background-color: rgb(0, 156, 247);
 }
 
-.nav-item.home {
+nav .right {
   margin-right: auto;
 }

@@ -24,9 +24,14 @@ const Navbar = () => {
   };
   return (
     <nav>
-      <NavLink to="/" className="nav-item home">
-        Home
-      </NavLink>
+      <div className="right">
+        <NavLink to="/" className="nav-item">
+          Home
+        </NavLink>
+        <NavLink to="/api" className="nav-item">
+          API
+        </NavLink>
+      </div>
       {!loggedInUser && (
         <>
           <NavLink to="/login" className="nav-item">
