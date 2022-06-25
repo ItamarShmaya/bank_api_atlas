@@ -28,8 +28,8 @@
         <h1 class="main-heading">Usage</h1>
         <h2>Base URL</h2>
         <p>
-          <a href="https://is-bank-api.herokuapp.com" target="_blank"
-            >https://is-bank-api.herokuapp.com</a
+          <a href="https://sh-bank-app.herokuapp.com/api" target="_blank"
+            >https://sh-bank-app.herokuapp.com/api</a
           >
         </p>
         <div class="methods">
@@ -38,8 +38,8 @@
             <a href="#GET">
               <li>GET</li>
             </a>
-            <a href="#PUT">
-              <li>PUT</li>
+            <a href="#PATCH">
+              <li>PATCH</li>
             </a>
             <a href="#POST">
               <li>POST</li>
@@ -54,22 +54,29 @@
           <div class="endpoint">
             <h2>get all users</h2>
             <h3>/users</h3>
-            <h4>Returns:</h4>
+            <h4>Access: Admin</h4>
+            <h5>Returns:</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>[ 
   { 
+    "_id": "ObjectId",
     "firstName": "string", 
     "lastName": "string", 
-    "accounts": ["string"] 
+    "email": "string",
+    "totalCash": number,
+    "accounts": [
+      {
+        "account": "ObjectI
+      }
+    ] 
   } 
 ]</code></pre>
             </div>
           </div>
           <div class="endpoint">
             <h2>get users by search</h2>
-            <h3>/users?filter={}&min={}&max={}&firstName={}&lastName={}</h3>
-            <p>filter required => cash / firstname / lastname</p>
+            <h3>/users?minCash={}&maxCash={}&firstName={}&lastName={}</h3>
             <p>min => if specified set minimum cash</p>
             <p>max => if specified set maximum cash</p>
             <p>firstName => for firstName</p>
@@ -79,9 +86,16 @@
               <!-- prettier-ignore -->
               <pre><code>[ 
   { 
+    "_id": "ObjectId",
     "firstName": "string", 
     "lastName": "string", 
-    "accounts": ["string"] 
+    "email": "string",
+    "totalCash": number,
+    "accounts": [
+      {
+        "account": "ObjectI
+      }
+    ] 
   } 
 ]</code></pre>
             </div>
@@ -89,52 +103,123 @@
           <div class="endpoint">
             <h2>get all accounts</h2>
             <h3>/accounts</h3>
-            <h4>Returns:</h4>
+            <h4>Access: Admin</h4>
+            <h5>Returns:</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>[ 
   { 
+    "_id": "ObjectId",
     "cash": numebr, 
     "credit": number, 
     "isActive": boolean,
-    "accountId": "string",
-    "ownersId": ["string"] 
+    "owners": [
+      {
+        owner: "ObjectId"
+      }
+    ] 
   } 
 ]</code></pre>
             </div>
           </div>
           <div class="endpoint">
             <h2>get user by id</h2>
-            <h3>/user/{id}</h3>
-            <h4>Returns:</h4>
+            <h3>/users/{id}</h3>
+            <h4>Access: Admin</h4>
+            <h5>Returns:</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>[ 
   { 
+    "_id": "ObjectId",
     "firstName": "string", 
-    "lastName": "string", 
-    "accounts": ["string"] 
+    "lastName": "string",
+    "email": "string", 
+    "accounts": [
+      {
+        "account": "ObjectId"
+      }
+    ] 
   } 
 ]</code></pre>
             </div>
           </div>
           <div class="endpoint">
             <h2>get user by id full</h2>
-            <h3>/user/{id}/full</h3>
-            <h4>Returns:</h4>
+            <h3>/users/{id}/full</h3>
+            <h4>Access: Admin</h4>
+            <h5>Returns:</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>[ 
   { 
+    "_id": "ObjectId",
     "firstName": "string", 
-    "lastName": "string", 
+    "lastName": "string",
+    "email": "string", 
     "accounts": [
       {
+        "_id": "ObjectId"
         "cash": number,
         "credit": number,
         "isActive": boolean,
-        "accountId": "string",
-        "ownersId": ["string"]
+        "ownersId": [
+          {
+            "owner": "ObjectId"
+          }
+        ]
+      }
+    ] 
+  } 
+]</code></pre>
+            </div>
+          </div>
+          <div class="endpoint">
+            <h2>get logged in user</h2>
+            <h3>/users/me</h3>
+            <h4>Access: Basic</h4>
+            <h5>Returns:</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>[ 
+  { 
+    "_id": "ObjectId",
+    "firstName": "string", 
+    "lastName": "string",
+    "email": "string", 
+    "accounts": [
+      {
+        "account": "ObjectId"
+      }
+    ] 
+  } 
+]</code></pre>
+            </div>
+          </div>
+          <div class="endpoint">
+            <h2>get logged in user full</h2>
+            <h3>/users/me/full</h3>
+            <h4>Access: Basic</h4>
+            <h5>Returns:</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>[ 
+  { 
+    "_id": "ObjectId",
+    "firstName": "string", 
+    "lastName": "string",
+    "email": "string", 
+    "accounts": [
+      {
+        "_id": "ObjectId"
+        "cash": number,
+        "credit": number,
+        "isActive": boolean,
+        "ownersId": [
+          {
+            "owner": "ObjectId"
+          }
+        ]
       }
     ] 
   } 
@@ -142,12 +227,13 @@
             </div>
           </div>
         </section>
-        <section id="PUT">
-          <h1>PUT</h1>
+        <section id="PATCH">
+          <h1>PATCH</h1>
           <div class="endpoint">
             <h2>withdraw by user id</h2>
-            <h3>/user/{id}/withdraw</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/withdraw</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -159,8 +245,9 @@
           </div>
           <div class="endpoint">
             <h2>deposite by user id</h2>
-            <h3>/user/{id}/deposite</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/deposite</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -172,8 +259,9 @@
           </div>
           <div class="endpoint">
             <h2>change credit by user id</h2>
-            <h3>/user/{id}/credit</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/credit</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -185,8 +273,9 @@
           </div>
           <div class="endpoint">
             <h2>transfer by user id</h2>
-            <h3>/user/{id}/transfer</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/transfer</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -199,9 +288,52 @@
             <p>Returns user's account</p>
           </div>
           <div class="endpoint">
+            <h2>withdraw logged in user</h2>
+            <h3>/users/me/withdraw</h3>
+            <h4>Access: Basic</h4>
+            <h5>required</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>req.body: {
+  "accountId": "string",
+  "amount": number
+}</code></pre>
+            </div>
+            <p>Returns user's account</p>
+          </div>
+          <div class="endpoint">
+            <h2>deposite logged in user</h2>
+            <h3>/users/me/deposite</h3>
+            <h4>Access: Basic</h4>
+            <h5>required</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>req.body: {
+  "accountId": "string",
+  "amount": number
+}</code></pre>
+            </div>
+            <p>Returns user's account</p>
+          </div>
+          <div class="endpoint">
+            <h2>transfer logged in user</h2>
+            <h3>/users/me/transfer</h3>
+            <h4>Access: Basic</h4>
+            <h5>required</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>req.body: {
+  "accountId": "string",
+  "amount": number
+}</code></pre>
+            </div>
+            <p>Returns user's account</p>
+          </div>
+          <div class="endpoint">
             <h2>add existing account to user</h2>
-            <h3>/user/{id}/add-account</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/add-account</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -212,8 +344,9 @@
           </div>
           <div class="endpoint">
             <h2>remove account from user</h2>
-            <h3>/user/{id}/remove-account</h3>
-            <h4>required</h4>
+            <h3>/users/{id}/remove-account</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
@@ -226,68 +359,45 @@
         <section id="POST">
           <h1>POST</h1>
           <div class="endpoint">
-            <h2>create user</h2>
-            <h3>/users</h3>
-            <h4>required</h4>
+            <h2>register</h2>
+            <h3>/users/register</h3>
+            <h4>Access: All</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
+  "email": "string",
   "firstName": "string",
   "lastName": "string",
-  "accounts": []
+  "password": "string"
 }</code></pre>
-              <p>*accounts => an array.</p>
-              <p>existing account id / new account object.</p>
-              <p>example:</p>
+              <p>accounts not required. defualts to an empty array</p>
               <!-- prettier-ignore -->
-              <pre><code>req.body: {
-"accounts": [
-  "azxcas2e32",
-  "zxczsadzxc",
-]
------------------------
-"accounts": [
-  {
-    "cash": numner,
-    "credit": number,
-    "isActive": boolean
-  }
-]
------------------------
-"accounts": [
-  "azxcas2e32",
+              <pre><code>"accounts": [
     {
-      "cash": numner,
-      "credit": number,
-      "isActive": boolean
+      "account": "ObjectId"
     }
   ]
-  -----------------------
-  "accounts": [
-    {}
-  ]</code></pre>
+</code></pre>
             </div>
-            <p>
-              if field was not specified creating an account with default values
-            </p>
-            <p>cash: 0,</p>
-            <p>credit: 0,</p>
-            <p>isActive: true</p>
-            <p>Returns created user</p>
+            <p>Returns user and token</p>
           </div>
           <div class="endpoint">
             <h2>create account</h2>
             <h3>/accounts</h3>
+            <h4>Access: Admin</h4>
+            <h5>required</h5>
             <div>
               <!-- prettier-ignore -->
               <pre><code>req.body: {
-"ownerId": "string"
-"cash": "string",
-"credit": "string",
-"isActive": boolean
+  "owners": [
+    {
+      "owner": "ObjectId"
+    }
+  ]
 }</code></pre>
             </div>
-            <p>ownderId: <b>required</b></p>
+            <p>owners: <b>required</b> only one owner at creation</p>
             <p>
               if field was not specified creating an account with default values
             </p>
@@ -296,17 +406,52 @@
             <p>isActive: true</p>
             <p>Returns created account</p>
           </div>
+          <div class="endpoint">
+            <h2>login</h2>
+            <h3>/users/login</h3>
+            <h4>Access: All</h4>
+            <h5>required</h5>
+            <div>
+              <!-- prettier-ignore -->
+              <pre><code>req.body: {
+  "email": "string",
+  "password": "string"
+}</code></pre>
+            </div>
+          </div>
+          <div class="endpoint">
+            <h2>logout</h2>
+            <h3>/users/logout</h3>
+            <h4>Access: Basic</h4>
+          </div>
+          <hr />
+          <div class="endpoint">
+            <h2>logoutAll</h2>
+            <h3>/users/logoutAll</h3>
+            <h4>Access: Basic</h4>
+          </div>
+          <hr />
         </section>
         <section id="DELETE">
           <h1>DELETE</h1>
           <div class="endpoint">
             <h2>delete user</h2>
             <h3>/users/{id}</h3>
+            <h4>Access: Admin</h4>
             <p>Returns deleted user</p>
           </div>
+          <hr />
+          <div class="endpoint">
+            <h2>delete logged in user</h2>
+            <h3>/users/me</h3>
+            <h4>Access: Basic</h4>
+            <p>Returns deleted user</p>
+          </div>
+          <hr />
           <div class="endpoint">
             <h2>delete account</h2>
             <h3>/account/{id}</h3>
+            <h4>Access: Basic</h4>
             <p>Returns deleted account</p>
           </div>
         </section>

@@ -4,7 +4,8 @@ import {
   MONGO_ATLAS_PASSWORD,
 } from "../config/env_var.js";
 
-const URI = `mongodb+srv://${MONGO_ATLAS_USERNAME}:${MONGO_ATLAS_PASSWORD}@bankapi.czn2nnh.mongodb.net/bankApi?retryWrites=true&w=majority`;
+const URI = `mongodb+srv://${MONGO_ATLAS_USERNAME}:${MONGO_ATLAS_PASSWORD}@bankapi.wbrpi3h.mongodb.net/bankApi?retryWrites=true&w=majority`;
+const LOCALHOST = "mongodb://127.0.0.1:27017/bankapi-test";
 
 mongoose.connect(URI, (error, mongoDBInstance) => {
   if (error) throw new Error("Mongo Connection Error: " + error);
