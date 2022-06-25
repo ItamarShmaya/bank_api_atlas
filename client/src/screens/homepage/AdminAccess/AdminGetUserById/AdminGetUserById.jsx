@@ -1,32 +1,26 @@
 import { useState } from "react";
-import "./Withdraw.css";
-import axios from "axios";
 import { useLoggedInUser } from "../../../../contex/contex_custom_hooks.js";
+import axios from "axios";
 
-const Withdraw = () => {
-  const [accountId, setAccountId] = useState("");
-  const [amount, setAmount] = useState("");
+const AdminGetUserById = ({ setInfo }) => {
+  const [fromUserId, setFromUserId] = useState("");
   const [error, setError] = useState("");
   const { loggedInUser } = useLoggedInUser();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const body = {
-      accountId,
-      amount: +amount,
-    };
     try {
       if (!loggedInUser) throw new Error("Must Log in");
-      await axios.patch(
-        "https://sh-bank-app.herokuapp.com/api/users/me/withdraw",
-        body,
+      const { data } = await axios.get(
+        `https://sh-bank-app.herokuapp.com/api/users/${fromUserId}`,
         {
           headers: {
             Authorization: `Bearer ${loggedInUser.token}`,
           },
         }
       );
-      setAmount("");
+      setInfo(data);
+      setFromUserId("");
       setError("");
     } catch (e) {
       setError(e.response?.data || e.message);
@@ -34,28 +28,21 @@ const Withdraw = () => {
   };
   return (
     <>
-      <h4>Withdraw</h4>
       <form onSubmit={onSubmit}>
         <input
           type="text"
-          placeholder="Account"
-          name={"accountId"}
-          value={accountId}
-          onChange={({ target }) => setAccountId(target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Amount"
-          name="amount"
-          value={amount}
-          onChange={({ target }) => setAmount(target.value)}
+          placeholder="User ID"
+          name={"fromUserId"}
+          value={fromUserId}
+          onChange={({ target }) => setFromUserId(target.value)}
+          required
         />
         <button className="btn" type="submit">
-          Withdraw
+          get user
         </button>
       </form>
       {error && <div>{error}</div>}
     </>
   );
 };
-export default Withdraw;
+export default AdminGetUserById;

@@ -1,13 +1,14 @@
-import "./Transfer.css";
 import { useState } from "react";
 import { useLoggedInUser } from "../../../../contex/contex_custom_hooks.js";
+import "./AdminTransfer.css";
 import axios from "axios";
 
-const Transfer = () => {
+const AdminTransfer = () => {
+  const [fromUserId, setFromUserId] = useState("");
   const [fromAccountId, setFromAccountId] = useState("");
-  const [toUserId, setToUserId] = useState("");
-  const [toAccountId, setToAccountId] = useState("");
   const [amount, setAmount] = useState("");
+  const [toAccountId, setToAccountId] = useState("");
+  const [toUserId, setToUserId] = useState("");
   const [error, setError] = useState("");
   const { loggedInUser } = useLoggedInUser();
 
@@ -22,7 +23,7 @@ const Transfer = () => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       await axios.patch(
-        "https://sh-bank-app.herokuapp.com/api/users/me/transfer",
+        `https://sh-bank-app.herokuapp.com/api/users/${fromUserId}/transfer`,
         body,
         {
           headers: {
@@ -38,14 +39,23 @@ const Transfer = () => {
   };
   return (
     <>
-      <h4>Transfer</h4>
+      <h4>Deposite</h4>
       <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="From User ID"
+          name={"fromUserId"}
+          value={fromUserId}
+          onChange={({ target }) => setFromUserId(target.value)}
+          required
+        />
         <input
           type="text"
           placeholder="From Account"
           name={"fromAccountId"}
           value={fromAccountId}
           onChange={({ target }) => setFromAccountId(target.value)}
+          required
         />
         <input
           type="text"
@@ -53,6 +63,7 @@ const Transfer = () => {
           name="amount"
           value={amount}
           onChange={({ target }) => setAmount(target.value)}
+          required
         />
         <input
           type="text"
@@ -60,6 +71,7 @@ const Transfer = () => {
           name="toUserId"
           value={toUserId}
           onChange={({ target }) => setToUserId(target.value)}
+          required
         />
         <input
           type="text"
@@ -67,6 +79,7 @@ const Transfer = () => {
           name="toAccountId"
           value={toAccountId}
           onChange={({ target }) => setToAccountId(target.value)}
+          required
         />
         <button className="btn" type="submit">
           Transfer
@@ -76,4 +89,4 @@ const Transfer = () => {
     </>
   );
 };
-export default Transfer;
+export default AdminTransfer;

@@ -1,0 +1,12 @@
+.wrapper form {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+}
+
+.wrapper .action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

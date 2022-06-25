@@ -2,6 +2,12 @@ import { useState } from "react";
 import "./AdminAccess.css";
 import axios from "axios";
 import { useLoggedInUser } from "../../../contex/contex_custom_hooks";
+import AdminDeposite from "./AdminDeposite/AdminDeposite";
+import AdminTransfer from "./AdminTransfer/AdminTransfer";
+import AdminWithdraw from "./AdminWithdraw/AdminWithdraw";
+import AdminCredit from "./AdminCredit/AdminCredit";
+import AdminGetUserByIdFull from "./AdminGetUserByIdFull/AdminGetUserByIdFull";
+import AdminGetUserById from "./AdminGetUserById/AdminGetUserById";
 
 const AdminAccess = () => {
   const [info, setInfo] = useState("");
@@ -53,14 +59,42 @@ const AdminAccess = () => {
           <div onClick={() => setAction("getAllAccounts")}>
             get all accounts
           </div>
+          <div onClick={() => setAction("getUserById")}>get user by id</div>
+          <div onClick={() => setAction("getUserByIdFull")}>
+            get user by id full
+          </div>
+          <div onClick={() => setAction("withdrawById")}>
+            withdraw by user id
+          </div>
+          <div onClick={() => setAction("depositeById")}>
+            deposite by user id
+          </div>
+          <div onClick={() => setAction("transferById")}>
+            transfer by user id
+          </div>
+          <div onClick={() => setAction("setCreditById")}>
+            set credit by user id
+          </div>
         </div>
         <div className="action">
           {action === "getAllUsers" && (
-            <button onClick={onGetAllUserClick}>Get All Users</button>
+            <button className="btn" onClick={onGetAllUserClick}>
+              Get All Users
+            </button>
           )}
           {action === "getAllAccounts" && (
-            <button onClick={onGetAllAccountsClick}>Get All Accounts</button>
+            <button className="btn" onClick={onGetAllAccountsClick}>
+              Get All Accounts
+            </button>
           )}
+          {action === "getUserById" && <AdminGetUserById setInfo={setInfo} />}
+          {action === "getUserByIdFull" && (
+            <AdminGetUserByIdFull setInfo={setInfo} />
+          )}
+          {action === "withdrawById" && <AdminWithdraw />}
+          {action === "depositeById" && <AdminDeposite />}
+          {action === "transferById" && <AdminTransfer />}
+          {action === "setCreditById" && <AdminCredit />}
         </div>
         <div className="user-info">
           <div className="code-container">
