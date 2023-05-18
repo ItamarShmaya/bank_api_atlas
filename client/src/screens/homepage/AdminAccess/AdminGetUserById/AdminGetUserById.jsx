@@ -12,7 +12,7 @@ const AdminGetUserById = ({ setInfo }) => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       const { data } = await axios.get(
-        `https://sh-bank-app.herokuapp.com/api/users/${fromUserId}`,
+        `https://bank-api-j30a.onrender.com/api/users/${fromUserId}`,
         {
           headers: {
             Authorization: `Bearer ${loggedInUser.token}`,

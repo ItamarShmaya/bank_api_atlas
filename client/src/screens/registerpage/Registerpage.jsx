@@ -23,7 +23,7 @@ const Registerpage = () => {
     };
     try {
       const response = await axios.post(
-        "https://sh-bank-app.herokuapp.com/api/users/register",
+        "https://bank-api-j30a.onrender.com/api/users/register",
         body
       );
       setLoggedInUser({

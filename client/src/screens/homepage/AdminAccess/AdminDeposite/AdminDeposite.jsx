@@ -19,7 +19,7 @@ const AdminDeposite = () => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       await axios.patch(
-        `https://sh-bank-app.herokuapp.com/api/users/${fromUserId}/deposite`,
+        `https://bank-api-j30a.onrender.com/api/users/${fromUserId}/deposite`,
         body,
         {
           headers: {

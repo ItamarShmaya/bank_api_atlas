@@ -8,7 +8,7 @@ const Navbar = () => {
   const onLogoutClick = async () => {
     try {
       await axios.post(
-        "https://sh-bank-app.herokuapp.com/api/users/logout",
+        "https://bank-api-j30a.onrender.com/api/users/logout",
         {},
         {
           headers: {
@@ -28,7 +28,7 @@ const Navbar = () => {
         <NavLink to="/" className="nav-item">
           Home
         </NavLink>
-        <a href="https://sh-bank-app.herokuapp.com/api" className="nav-item">
+        <a href="https://bank-api-j30a.onrender.com/api" className="nav-item">
           API
         </a>
       </div>

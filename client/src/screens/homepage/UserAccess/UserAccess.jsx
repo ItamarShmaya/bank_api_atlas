@@ -16,7 +16,7 @@ const UserAccess = () => {
     try {
       if (!loggedInUser) throw new Error("Must log in");
       const { data: user } = await axios.get(
-        "https://sh-bank-app.herokuapp.com/api/users/me/full",
+        "https://bank-api-j30a.onrender.com/api/users/me/full",
         {
           headers: {
             Authorization: `Bearer ${loggedInUser.token}`,

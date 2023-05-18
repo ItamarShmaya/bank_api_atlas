@@ -22,7 +22,7 @@ const Transfer = () => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       await axios.patch(
-        "https://sh-bank-app.herokuapp.com/api/users/me/transfer",
+        "https://bank-api-j30a.onrender.com/api/users/me/transfer",
         body,
         {
           headers: {

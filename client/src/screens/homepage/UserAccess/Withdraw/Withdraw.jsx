@@ -18,7 +18,7 @@ const Withdraw = () => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       await axios.patch(
-        "https://sh-bank-app.herokuapp.com/api/users/me/withdraw",
+        "https://bank-api-j30a.onrender.com/api/users/me/withdraw",
         body,
         {
           headers: {

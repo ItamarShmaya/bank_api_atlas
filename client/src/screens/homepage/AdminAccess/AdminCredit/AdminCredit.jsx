@@ -19,7 +19,7 @@ const AdminCredit = () => {
     try {
       if (!loggedInUser) throw new Error("Must Log in");
       await axios.patch(
-        `https://sh-bank-app.herokuapp.com/api/users/${fromUserId}/credit`,
+        `https://bank-api-j30a.onrender.com/api/users/${fromUserId}/credit`,
         body,
         {
           headers: {

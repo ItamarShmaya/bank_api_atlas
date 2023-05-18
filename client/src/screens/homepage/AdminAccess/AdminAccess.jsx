@@ -19,7 +19,7 @@ const AdminAccess = () => {
     try {
       if (!loggedInUser) throw new Error("Must log in");
       const { data } = await axios.get(
-        "https://sh-bank-app.herokuapp.com/api/users",
+        "https://bank-api-j30a.onrender.com/api/users",
         {
           headers: {
             Authorization: `Bearer ${loggedInUser.token}`,
@@ -35,7 +35,7 @@ const AdminAccess = () => {
   const onGetAllAccountsClick = async () => {
     try {
       const { data } = await axios.get(
-        "https://sh-bank-app.herokuapp.com/api/accounts",
+        "https://bank-api-j30a.onrender.com/api/accounts",
         {
           headers: {
             Authorization: `Bearer ${loggedInUser.token}`,
